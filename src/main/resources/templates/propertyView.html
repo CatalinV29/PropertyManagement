@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property View</title>
+    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+</head>
+<body>
+<ul>
+    <li><a href="http://localhost:8080/">Home</a></li>
+    <li><a href="http://localhost:8080/clients/all">Clients</a></li>
+    <li><a href="http://localhost:8080/property/all">Property</a></li>
+    <li><a href="http://localhost:8080/reservation/all">Reservation</a></li>
+    <li><a href="http://localhost:8080/users/all">Users</a></li>
+    <li><a href="about.asp">About</a></li>
+</ul>
+
+<table class="myTable">
+    <tr>
+        <td>Property ID</td>
+        <td>Address</td>
+        <td>Description</td>
+        <td>Delete</td>
+        <td>Update</td>
+    </tr>
+    <tr th:each="property : ${propertyList}">
+        <td th:text="${property.propertyId}"></td>
+        <td th:text="${property.address}"></td>
+        <td th:text="${property.description}"></td>
+
+        <td>
+            <form th:action="@{delete}" method="post"
+                  onclick="return confirm('Are you sure you want to delete this item')">
+                <input type="hidden" name="propertyId" th:value="${property.propertyId}"/>
+                <input type="submit" value="Delete" class="btn btn-danger"/>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{update}" method="get">
+                <input type="hidden" name="propertyId" th:value="${property.propertyId}"/>
+                <input type="submit" value="Update" class="btn btn-danger"/>
+            </form>
+
+        </td>
+    </tr>
+
+</table>
+
+<p>
+<form action="http://localhost:8080/property/createProperty">
+    <input type="submit" value="Create Property" />
+</form>
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Property</title>
+    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+</head>
+<body>
+
+<form action="#" th:action="@{/property/createProperty}" th:object="${property}" method="post">
+
+    <p>Address : <input type="text" th:field="*{address}" /></p>
+    <p>Description : <input type="text" th:field="*{description}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+    <br>
+
+</form>
+
+</body>
+</html>

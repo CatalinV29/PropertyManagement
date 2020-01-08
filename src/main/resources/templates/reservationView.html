@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation View</title>
+    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+</head>
+<body>
+<ul>
+    <li><a href="http://localhost:8080/">Home</a></li>
+    <li><a href="http://localhost:8080/clients/all">Clients</a></li>
+    <li><a href="http://localhost:8080/property/all">Property</a></li>
+    <li><a href="http://localhost:8080/reservation/all">Reservation</a></li>
+    <li><a href="http://localhost:8080/users/all">Users</a></li>
+    <li><a href="about.asp">About</a></li>
+</ul>
+<table class="myTable">
+    <tr>
+        <td>Reservation ID</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td>Comments</td>
+        <td >Client Rating</td>
+        <td>Property Rating</td>
+        <td>Delete</td>
+        <td>Update</td>
+    </tr>
+    <tr th:each="reservation : ${reservationList}" >
+        <td th:text="${reservation.reservationId}" ></td>
+        <td th:text = "${reservation.startDate}"></td>
+        <td th:text = "${reservation.endDate}"></td>
+        <td th:text = "${reservation.comments}"></td>
+        <td th:text="${reservation.clientRating}"></td>
+        <td th:text="${reservation.propertyRating}"></td>
+        <td>
+            <form th:action="@{delete}" method="post" onclick="return confirm('Are you sure you want to delete this item')">
+                <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </td>
+        <td>
+            <form th:action="@{update}" method="get">
+                <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
+                <input type="submit" value="Update" class="btn btn-danger" />
+            </form>
+        </td>
+    </tr>
+</table>
+<form action="http://localhost:8080/reservation/createReservation">
+    <input type="submit" value="Create Reservation" />
+</form>
+</body>
+</html>

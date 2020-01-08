@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Reservation</title>
+    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+</head>
+<body>
+<form action="#" th:action="@{/reservation/createReservation}" th:object="${reservation}" method="post">
+
+    <p>Start Date : <input type="text" th:field="*{startDate}" /></p>
+    <p>End Date: <input type="text" th:field="*{endDate}" /></p>
+    <p>Comments : <input type="text" th:field="*{comments}" /></p>
+    <p>Client Rating : <input type="text" th:field="*{clientRating}" /></p>
+    <p>Property Rating : <input type="text" th:field="*{propertyRating}" /></p>
+
+    <p>Client : <select th:field="*{client.clientId}">
+        <option value=""> Clients </option>
+        <option th:each="clients : ${clientList}"
+                th:value="${clients.clientId}"
+                th:utext="${clients.firstName}"/>
+    </select>
+    </p>
+    <p> Property : <select th:field="*{property.propertyId}">
+        <option value=""> Property </option>
+        <option th:each="property : ${propertyList}"
+                th:value="${property.propertyId}"
+                th:utext="${property.address}"/>
+    </select>
+    </p>
+
+
+
+
+    <p><input type="submit" value="Submit" /></p>
+    <br>
+
+
+</form>
+</body>
+</html>
