@@ -1,7 +1,6 @@
 package com.sda.propertyManager.controller;
 
 import com.sda.propertyManager.model.Client;
-import com.sda.propertyManager.repository.ClientRepository;
 import com.sda.propertyManager.service.ClientService;
 import com.sda.propertyManager.service.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,14 @@ import java.util.List;
 public class ClientController {
 
     @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
     private ClientService clientService;
+
+    @GetMapping("/findById")
+    public String listClients(Model model){
+        model.addAttribute("clients", clientService.findAll(0,100));
+        return "clientView";
+    }
+
 
 
     @GetMapping(value = "/findClientByClientId/{id}")
@@ -30,12 +33,14 @@ public class ClientController {
         return "clientView";
     }
 
-    @GetMapping(value = "/findClientByFirstName/{firstName}")
-    public String findClientByFirstName(@PathVariable(name = "firstName") String firstName, Model model) {
-        Client byFirstName = clientService.findClientByFirstName(firstName);
-        model.addAttribute("byFirstName", byFirstName);
+
+
+    @GetMapping(value = "/findClientByFirstName")
+    public String listClients(@RequestParam(defaultValue = "") String firstName, Model model ) {
+        model.addAttribute("clientList", clientService.findClientByFirstName(firstName));
         return "clientView";
     }
+
 
     @GetMapping(value = "/findClientByLastName/{lastName}")
     public String findClientByLastName(@PathVariable(name = "lastName") String lastName, Model model) {
@@ -60,6 +65,8 @@ public class ClientController {
         return "clientView";
     }
 
+
+
     @RequestMapping(path = "/createClient", method = RequestMethod.GET)
     public String createClientView(ModelMap model) {
         model.addAttribute("client", new Client());
@@ -69,7 +76,7 @@ public class ClientController {
     @RequestMapping(path = "/createClient", method = RequestMethod.POST)
     public String createClient(@ModelAttribute Client client) {
         clientService.createClient(client);
-        return "redirect:/clients/all";
+        return "redirect:/reservation/createReservation";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)

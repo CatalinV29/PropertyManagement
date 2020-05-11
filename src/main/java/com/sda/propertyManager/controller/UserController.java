@@ -35,7 +35,7 @@ public class UserController {
         modelMap.addAttribute("userList", userList);
         return "userView";
     }
-    @RequestMapping(path = "/createUser", method = RequestMethod.GET)
+        @RequestMapping(path = "/createUser", method = RequestMethod.GET)
     public String createUserView(ModelMap model) {
         model.addAttribute("user", new User());
         return "createUser";

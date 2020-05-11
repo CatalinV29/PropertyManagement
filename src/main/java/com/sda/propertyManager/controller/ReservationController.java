@@ -26,12 +26,13 @@ public class ReservationController {
     @Autowired
     PropertyService propertyService;
 
-    @GetMapping(value = "/findReservationByReservationId/{id}")
-    public String findClientByClientId(@PathVariable(name = "id") Integer id, Model model) throws Exception {
+    @GetMapping(value = "/findReservationByReservationId")
+    public String findReservationById(@RequestParam(defaultValue = "") Integer id, Model model) throws Exception {
         Reservation byId = reservationService.findReservationByReservationId(id);
-        model.addAttribute("reservationById", byId);
+        model.addAttribute("reservationList", byId);
         return "reservationView";
     }
+
     @GetMapping(value = "/all")
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,
                           @RequestParam(value = "size", defaultValue = "100") Integer size,

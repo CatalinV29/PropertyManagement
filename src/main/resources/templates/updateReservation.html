@@ -1,20 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Update Reservation</title>
-    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'><link rel="stylesheet" href="./style.css">
+    <script rel="stylesheet" src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 </head>
-<body>
-<form action="#" th:action="@{/reservation/update}" th:object="${reservation}" method="post">
+    <body>
+    <div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar" style="width: 15%" align="left">
+            <header>
+                <a href="http://localhost:8080/">My App</a>
+            </header>
+            <ul class="nav">
+                <li>
+                    <a href="http://localhost:8080/">
+                        <i class="zmdi zmdi-view-dashboard"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/clients/all">
+                        <i class="zmdi zmdi-link"></i> Clients
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/property/all">
+                        <i class="zmdi zmdi-widgets"></i> Properties
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/reservation/all">
+                        <i class="zmdi zmdi-calendar"></i> Reservations
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="zmdi zmdi-info-outline"></i> About
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="zmdi zmdi-comment-more"></i> Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <div class="container my-5" style="float: right" width:15%>
+            <form action="#" th:action="@{/reservation/update}" th:object="${reservation}" method="post">
 
-    <p>Start Date : <input type="text" th:field="*{startDate}" /></p>
-    <p>End Date : <input type="text" th:field="*{endDate}" /></p>
-    <p>Comments : <input type="text" th:field="*{comments}" /></p>
-    <p>Client Rating : <input type="text" th:field="*{clientRating}" /></p>
-    <p>Property Rating : <input type="text" th:field="*{propertyRating}" /></p>
-    <input type="hidden" th:field="*{reservationId}" />
-    <p><input type="submit" value="Update" /></p>
-</form>
-</body>
+                <p>Start Date : <input type="date" th:field="*{startDate}" /></p>
+                <p>End Date : <input type="date" th:field="*{endDate}" /></p>
+                <p>Comments : <input type="text"  th:field="*{comments}" /></p>
+                <p>Client Rating : <input type="number" name="quantity" min="1" max="10" th:field="*{clientRating}" /></p>
+                <p>Property Rating : <input type="number"name="quantity" min="1" max="10" th:field="*{propertyRating}" /></p>
+                <p>Number of clients : <input type="number" th:field="*{numberOfPersons}" /></p>
+                <input type="hidden" th:field="*{reservationId}" />
+                <p><input type="submit" value="Update" /></p>
+            </form>
+        </div>
+    </body>
 </html>

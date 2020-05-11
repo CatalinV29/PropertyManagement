@@ -1,41 +1,125 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create Reservation</title>-->
+<!--    <link rel="stylesheet" th:href="@{/homeStyle.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="#" th:action="@{/reservation/createReservation}" th:object="${reservation}" method="post">-->
+<!--    <p>Start Date : <input type="text" th:field="*{startDate}" /></p>-->
+<!--    <p>End Date: <input type="text" th:field="*{endDate}" /></p>-->
+<!--    <p>Comments : <input type="text" th:field="*{comments}" /></p>-->
+<!--    <p>Client Rating : <input type="text" th:field="*{clientRating}" /></p>-->
+<!--    <p>Property Rating : <input type="text" th:field="*{propertyRating}" /></p>-->
+
+<!--    <p>Client : <select th:field="*{client.clientId}">-->
+<!--        <option value=""> Clients </option>-->
+<!--        <option th:each="clients : ${clientList}"-->
+<!--                th:value="${clients.clientId}"-->
+<!--                th:utext="${clients.firstName}">-->
+<!--    </select>-->
+<!--    </p>-->
+<!--    <p> Property : <select th:field="*{property.propertyId}">-->
+<!--        <option value=""> Property </option>-->
+<!--        <option th:each="property : ${propertyList}"-->
+<!--                th:value="${property.propertyId}"-->
+<!--                th:utext="${property.address}">-->
+<!--    </select>-->
+<!--    </p>-->
+
+
+
+
+<!--    <p><input type="submit" value="Submit" /></p>-->
+<!--    <br>-->
+
+
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create Reservation</title>
-    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'><link rel="stylesheet" href="./style.css">
+    <script rel="stylesheet" src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 </head>
 <body>
-<form action="#" th:action="@{/reservation/createReservation}" th:object="${reservation}" method="post">
+<div id="viewport">
+    <!-- Sidebar -->
+    <div id="sidebar" style="width: 15%" align="left">
+        <header>
+            <a href="http://localhost:8080/">My App</a>
+        </header>
+        <ul class="nav">
+            <li>
+                <a href="http://localhost:8080/">
+                    <i class="zmdi zmdi-view-dashboard"></i> Home
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/clients/all">
+                    <i class="zmdi zmdi-link"></i> Clients
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/property/all">
+                    <i class="zmdi zmdi-widgets"></i> Properties
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/reservation/all">
+                    <i class="zmdi zmdi-calendar"></i> Reservations
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="zmdi zmdi-info-outline"></i> About
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="zmdi zmdi-comment-more"></i> Contact
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
-    <p>Start Date : <input type="text" th:field="*{startDate}" /></p>
-    <p>End Date: <input type="text" th:field="*{endDate}" /></p>
-    <p>Comments : <input type="text" th:field="*{comments}" /></p>
-    <p>Client Rating : <input type="text" th:field="*{clientRating}" /></p>
-    <p>Property Rating : <input type="text" th:field="*{propertyRating}" /></p>
+<div style="width: 40%" align   ="right">
+    <form action="#" th:action="@{/reservation/createReservation}" th:object="${reservation}" method="post">
+        <p>Start Date : <input type="date" th:field="*{startDate}" /></p>
+        <p>End Date: <input type="date" th:field="*{endDate}" /></p>
+        <p>Comments : <input type="text" th:field="*{comments}" /></p>
+        <p>Client Rating : <input type="number" name="quantity" min="1" max="10" placeholder="1-10" th:field="*{clientRating}" /></p>
+        <p>Property Rating : <input type="number" name="quantity" min="1" max="10"placeholder="1-10     "  th:field="*{propertyRating}" /></p>
+        <p>Number of Persons : <input type="text" th:field="*{numberOfPersons}" /></p>
 
-    <p>Client : <select th:field="*{client.clientId}">
-        <option value=""> Clients </option>
-        <option th:each="clients : ${clientList}"
-                th:value="${clients.clientId}"
-                th:utext="${clients.firstName}"/>
-    </select>
-    </p>
-    <p> Property : <select th:field="*{property.propertyId}">
-        <option value=""> Property </option>
-        <option th:each="property : ${propertyList}"
-                th:value="${property.propertyId}"
-                th:utext="${property.address}"/>
-    </select>
-    </p>
+        <p>Client : <select th:field="*{client.clientId}">
+            <option value=""> Clients </option>
+            <option th:each="clients : ${clientList}"
+                    th:value="${clients.clientId}"
+                    th:utext="${clients.firstName}"></option>
+        </select>
+        </p>
+        <p> Property : <select th:field="*{property.propertyId}">
+            <option value=""> Property </option>
+            <option th:each="property : ${propertyList}"
+                    th:value="${property.propertyId}"
+                    th:utext="${property.address}"></option>
+        </select>
+        </p>
+        <p><input type="submit" value="Submit" /></p>
+        <br>
 
+    </form>
 
-
-
-    <p><input type="submit" value="Submit" /></p>
-    <br>
-
-
-</form>
+</div>
 </body>
 </html>

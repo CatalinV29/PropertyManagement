@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title> Update Client </title>
-    <link rel="stylesheet" th:href="@{/homeStyle.css}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'><link rel="stylesheet" href="./style.css">
+    <script rel="stylesheet" src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 </head>
 <body>
-<div class="container my-5">
+    <div id="viewport"style="float:left">
+        <!-- Sidebar -->
+        <div id="sidebar" style="width: 15%" align="left">
+            <header>
+                <a href="http://localhost:8080/">My App</a>
+            </header>
+            <ul class="nav">
+                <li>
+                    <a href="http://localhost:8080/">
+                        <i class="zmdi zmdi-view-dashboard"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/clients/all">
+                        <i class="zmdi zmdi-link"></i> Clients
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/property/all">
+                        <i class="zmdi zmdi-widgets"></i> Properties
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost:8080/reservation/all">
+                        <i class="zmdi zmdi-calendar"></i> Reservations
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="zmdi zmdi-info-outline"></i> About
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="zmdi zmdi-comment-more"></i> Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div class="container my-5" style="float: right" width:min-content>
     <h3>Update Client</h3>
     <form action="#" th:action="@{/clients/update}" th:object="${client}" method="post">
 
@@ -15,6 +60,7 @@
         <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
         <p>Email: <input type="text" th:field="*{email}" /></p>
         <p>CNP: <input type="text" th:field="*{cnp}" /></p>
+        <p>Photo: <input type="text" th:field="*{photo}" /></p>
         <input type="hidden" th:field="*{clientId}" />
         <p><input type="submit" value="Update" /></p>
     </form>

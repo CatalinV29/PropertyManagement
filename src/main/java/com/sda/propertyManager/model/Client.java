@@ -87,6 +87,7 @@ public class Client {
         this.reservationList = reservationList;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,6 +117,7 @@ public class Client {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", cnp='" + cnp + '\'' +
+                ", numberOfPersons='"  + '\'' +
                 ", photo=" + Arrays.toString(photo) +
                 ", reservationList=" + reservationList +
                 '}';

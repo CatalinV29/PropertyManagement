@@ -25,6 +25,7 @@ public class ReservationService {
         }
     }
 
+
     public List<Reservation> findAll(Integer page, Integer size) {
         List<Reservation> reservations = new ArrayList<>();
         List<Reservation> dbReservation = reservationRepository.findAll(PageRequest.of(page, size)).getContent();
@@ -36,7 +37,7 @@ public class ReservationService {
 
     public Reservation createReservation(Reservation reservation) {
         if (reservation.getReservationId() == null) {
-          reservation =  reservationRepository.save(reservation);
+            reservation = reservationRepository.save(reservation);
             return reservation;
         } else {
             Optional<Reservation> optionalReservation = reservationRepository.findById(reservation.getReservationId());
@@ -47,6 +48,7 @@ public class ReservationService {
                 newReservation.setComments(reservation.getComments());
                 newReservation.setClientRating(reservation.getClientRating());
                 newReservation.setPropertyRating(reservation.getPropertyRating());
+                newReservation.setNumberOfPersons(reservation.getNumberOfPersons());
                 return newReservation;
             } else {
                 reservation = reservationRepository.save(reservation);
@@ -54,6 +56,7 @@ public class ReservationService {
             }
         }
     }
+
     public List<Reservation> updateReservation(Integer id, Reservation reservation) throws UserNotFoundException {
         Optional<Reservation> optionalReservation = reservationRepository.findById(id);
         if (optionalReservation.isPresent()) {
@@ -63,6 +66,7 @@ public class ReservationService {
             reservation1.setComments(reservation.getComments());
             reservation1.setClientRating(reservation.getClientRating());
             reservation1.setPropertyRating(reservation.getPropertyRating());
+            reservation1.setNumberOfPersons(reservation.getNumberOfPersons());
             reservationRepository.save(reservation1);
             List<Reservation> reservationList = new ArrayList<>();
             reservationRepository.findAll().forEach(c -> {
@@ -73,6 +77,7 @@ public class ReservationService {
             throw new UserNotFoundException(String.format("No user found with the id: %s!", id));
         }
     }
+
     public List<Reservation> deleteReservation(Integer reservationId) throws UserNotFoundException {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
         if (optionalReservation.isPresent()) {
@@ -86,6 +91,5 @@ public class ReservationService {
             throw new UserNotFoundException(String.format("No user found with the id: %s!, id"));
         }
     }
-
 
 }

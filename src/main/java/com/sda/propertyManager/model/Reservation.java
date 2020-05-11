@@ -2,6 +2,7 @@ package com.sda.propertyManager.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -22,6 +23,8 @@ public class Reservation {
     private String clientRating;
     @Column(name = "property_rating")
     private String propertyRating;
+    @Column(name = "number_of_persons")
+    private String numberOfPersons;
 
     @ManyToOne
     @JoinColumn(name = "client_id" )
@@ -93,5 +96,13 @@ public class Reservation {
 
     public void setProperty(Property property) {
         this.property = property;
+    }
+
+    public String getNumberOfPersons() {
+        return numberOfPersons;
+    }
+
+    public void setNumberOfPersons(String numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
     }
 }

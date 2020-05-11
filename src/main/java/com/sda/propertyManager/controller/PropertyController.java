@@ -62,4 +62,5 @@ public class PropertyController {
         propertyService.deleteProperty(propertyId);
         return "redirect:/property/all";
     }
+
 }

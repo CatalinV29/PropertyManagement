@@ -26,11 +26,11 @@ public class ClientService {
             throw new Exception("No client record exist for given id");
         }
     }
+//    public Client findClientByFirstName(String firstName) {
+//        Client client = (Client) clientRepository.findClientByLastName(firstName);
+//        return client;
+//    }
 
-    public Client findClientByFirstName(String firstName) {
-        Client client = (Client) clientRepository.findClientByFirstName(firstName);
-        return client;
-    }
 
     public Client findClientByLastName(String lastName) {
         Client client = (Client) clientRepository.findClientByLastName(lastName);
@@ -50,6 +50,7 @@ public class ClientService {
         }
         return clients;
     }
+
 
     public List<Client> deleteClient(Integer clientId) throws UserNotFoundException {
         Optional<Client> clientById = clientRepository.findById(clientId);
@@ -107,4 +108,9 @@ public class ClientService {
             }
         }
     }
+
+
+  public List<Client> findClientByFirstName(String firstName){
+        return clientRepository.findByFirstName(firstName);
+  }
 }

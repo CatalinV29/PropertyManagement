@@ -1,49 +1,49 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-    <link rel="stylesheet" th:href="@{/homeStyle.css}">
-</head>
-<body>
-<ul>
-    <li><a href="http://localhost:8080/">Home</a></li>
-    <li><a href="http://localhost:8080/clients/all">Clients</a></li>
-    <li><a href="http://localhost:8080/property/all">Property</a></li>
-    <li><a href="http://localhost:8080/reservation/all">Reservation</a></li>
-    <li><a href="http://localhost:8080/users/all">Users</a></li>
-    <li><a href="about.asp">About</a></li>
-</ul>
-<table class="myTable">
-    <tr>
-        <td>User ID</td>
-        <td >User Name</td>
-        <td>Password</td>
-        <td>Email</td>
-        <td>Delete</td>
-        <td>Update</td>
-    </tr>
-    <tr th:each="user : ${userList}" >
-        <td th:text="${user.userId}" ></td>
-        <td th:text = "${user.userName}"></td>
-        <td class="hidetext" th:text = "${user.password}"></td>
-        <td th:text = "${user.email}"></td>
-        <td>
-            <form th:action="@{delete}" method="post" onclick="return confirm('Are you sure you want to delete this item')">
-                <input type="hidden" name="userId" th:value="${user.userId}" />
-                <input type="submit" value="Delete" class="btn btn-danger" />
-            </form>
-        </td>
-        <td>
-            <form th:action="@{update}" method="get">
-                <input type="hidden" name="userId" th:value="${user.userId}" />
-                <input type="submit" value="Update" class="btn btn-danger" />
-            </form>
-        </td>
-    </tr>
-</table>
-<form action="http://localhost:8080/users/createUser">
-    <input type="submit" value="Create User" />
-</form>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Users</title>-->
+<!--    <link rel="stylesheet" th:href="@{/homeStyle.css}">-->
+<!--</head>-->
+<!--<body>-->
+<!--<ul>-->
+<!--    <li><a href="http://localhost:8080/">Home</a></li>-->
+<!--    <li><a href="http://localhost:8080/clients/all">Clients</a></li>-->
+<!--    <li><a href="http://localhost:8080/property/all">Property</a></li>-->
+<!--    <li><a href="http://localhost:8080/reservation/all">Reservation</a></li>-->
+<!--    <li><a href="http://localhost:8080/users/all">Users</a></li>-->
+<!--    <li><a href="about.asp">About</a></li>-->
+<!--</ul>-->
+<!--<table class="myTable">-->
+<!--    <tr>-->
+<!--        <td>User ID</td>-->
+<!--        <td >User Name</td>-->
+<!--        <td>Password</td>-->
+<!--        <td>Email</td>-->
+<!--        <td>Delete</td>-->
+<!--        <td>Update</td>-->
+<!--    </tr>-->
+<!--    <tr th:each="user : ${userList}" >-->
+<!--        <td th:text="${user.userId}" ></td>-->
+<!--        <td th:text = "${user.userName}"></td>-->
+<!--        <td class="hidetext" th:text = "${user.password}"></td>-->
+<!--        <td th:text = "${user.email}"></td>-->
+<!--        <td>-->
+<!--            <form th:action="@{delete}" method="post" onclick="return confirm('Are you sure you want to delete this item')">-->
+<!--                <input type="hidden" name="userId" th:value="${user.userId}" />-->
+<!--                <input type="submit" value="Delete" class="btn btn-danger" />-->
+<!--            </form>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <form th:action="@{update}" method="get">-->
+<!--                <input type="hidden" name="userId" th:value="${user.userId}" />-->
+<!--                <input type="submit" value="Update" class="btn btn-danger" />-->
+<!--            </form>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+<!--<form action="http://localhost:8080/users/createUser">-->
+<!--    <input type="submit" value="Create User" />-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
